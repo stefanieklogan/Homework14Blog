@@ -15,7 +15,7 @@ Blog.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-          length: [2-30]
+          length: [2-50]
       }
     },
     content: {
@@ -30,10 +30,10 @@ Blog.init(
       defaultValue: DataTypes.NOW,
     },
     user_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       references: {
         model: 'user',
-        key: 'username',
+        key: 'id',
       },
     },
   },

@@ -1,6 +1,6 @@
-const seedBlog = require('./blogData.json');
-const seedUser = require('./userData.json');
-const seedComment = require('./commentData.json');
+const seedBlog = require('./blogData.js');
+const seedUser = require('./userData.js');
+const seedComment = require('./commentData.js');
 
 const sequelize = require('../config/connection');
 
@@ -9,13 +9,13 @@ const seedAll = async () => {
   console.log('\n----- DATABASE SYNCED -----\n');
   
   await seedUser();
-  console.log('\n----- USER SEEDED -----\n');
+  console.log('\n----- USERS SEEDED -----\n');
 
   await seedBlog();
-  console.log('\n----- BLOG SEEDED -----\n');
+  console.log('\n----- BLOGS SEEDED -----\n');
 
   await seedComment();
-  console.log('\n----- COMMENT SEEDED -----\n');
+  console.log('\n----- COMMENTS SEEDED -----\n');
 
   process.exit(0);
 };

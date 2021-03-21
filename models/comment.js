@@ -13,6 +13,7 @@ Comment.init(
     },
     comment: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
         length: [2-100]
     }
@@ -23,10 +24,10 @@ Comment.init(
       defaultValue: DataTypes.NOW,
     },
     user_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       references: {
         model: 'user',
-        key: 'username',
+        key: 'id',
       },
     },
   },
