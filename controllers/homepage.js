@@ -1,5 +1,5 @@
 const router = require('express').Router();
-// const path = require('path');
+const path = require('path');
 // const { Blog, User } = require('../models');
 // const withAuth = require('../utils/auth');
 
@@ -10,7 +10,7 @@ const blogs = [
   },
   { blog_title: 'Blog Title TWO',
   blog_content: 'Here is blog two content.',
-  blog_date_created: '1/1/2020',
+  blog_date_created: '2/1/2020',
 },
 ];
 
