@@ -3,10 +3,22 @@ const router = require('express').Router();
 // const { Blog, User } = require('../models');
 // const withAuth = require('../utils/auth');
 
+const blogs = [
+  { blog_title: 'Blog Title One',
+    blog_content: 'Here is blog one content.',
+  },
+  { blog_title: 'Blog Title TWO',
+  blog_content: 'Here is blog two content.',
+},
+];
+
 router.get('/', async (req, res) => {
   res.render('../views/layouts/main');
 });
 
+router.get('/blog/:num', async (req, res) => {
+  return res.render('blog', blogs[req.params.num - 1]);
+});
 
 // router.get('/', async (req, res) => {
 //   try {
