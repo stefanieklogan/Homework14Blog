@@ -15,11 +15,11 @@ const blogs = [
 ];
 
 router.get('/', async (req, res) => {
-  res.render('../views/layouts/main', { blogs });
+  res.render('index', {} );
 });
 
 router.get('/dashboard', async (req, res) => {
-  return res.render('../views/dashboard');
+  return res.render('dashboard', {blogs} );
 });
 
 router.get('/blog/:num', async (req, res) => {
@@ -27,7 +27,7 @@ router.get('/blog/:num', async (req, res) => {
 });
 
 router.get('/login', async (req, res) => {
-  return res.render('../views/login');
+  return res.render('login');
 });
 
 // router.get('/', async (req, res) => {

@@ -1,20 +1,18 @@
 <div class="container">
 
-<p>### Proof of handlebar ###</p>
-
   {{#each blogs as |blog|}}
     <div class="row">
       <div class="col-8">
-        <h5>{{title}}</h5>
+        <h5>{{blog.title}}</h5>
       </div>
 
       <div class="col-4">
-      <p>Posted: {{date_created}}</p>
+      <p>Posted: {{blog.date_created}}</p>
       </div>
     </div>
   <br>
   <div class="row">
-    <p>{{content}}</p>
+    <p>{{blog.content}}</p>
   </div>
 
   {{/each}}
