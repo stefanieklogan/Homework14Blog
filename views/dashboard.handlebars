@@ -1,20 +1,20 @@
 <div class="container">
 
-<p>### Proof of handlebar file ###</p>
+<p>### Proof of handlebar ###</p>
 
   {{#each blogs as |blog|}}
     <div class="row">
       <div class="col-8">
-        <h5>{{blog.title}}</h5>
+        <h5>{{title}}</h5>
       </div>
 
       <div class="col-4">
-      <p>Posted: {{blog.date_created}}</p>
+      <p>Posted: {{date_created}}</p>
       </div>
     </div>
   <br>
   <div class="row">
-    <p>{{blog.content}}</p>
+    <p>{{content}}</p>
   </div>
 
   {{/each}}

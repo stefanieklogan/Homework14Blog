@@ -4,13 +4,13 @@ const path = require('path');
 // const withAuth = require('../utils/auth');
 
 const blogs = [
-  { blog_title: 'Blog Title One',
-    blog_content: 'Here is blog one content.',
-    blog_date_created: '1/1/2020',
+  { title: 'Blog One',
+    date_created: '1/1/2020',
+    content: 'Here is blog one content.',
   },
-  { blog_title: 'Blog Title TWO',
-  blog_content: 'Here is blog two content.',
-  blog_date_created: '2/1/2020',
+  { title: 'Blog TWO',
+  date_created: '2/1/2020',
+  content: 'Here is blog two content.',
 },
 ];
 
@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/dashboard', async (req, res) => {
-  res.render('../views/dashboard');
+  return res.render('../views/dashboard');
 });
 
 router.get('/blog/:num', async (req, res) => {
