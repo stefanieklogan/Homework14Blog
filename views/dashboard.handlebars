@@ -1,0 +1,19 @@
+<div class="container">
+
+  {{#each blogs as |blog|}}
+    <div class="row">
+      <div class="col-8">
+        <h5>{{blog.title}}</h5>
+      </div>
+
+      <div class="col-4">
+      <p>Posted: {{blog.date_created}}</p>
+      </div>
+    </div>
+  <br>
+  <div class="row">
+    <p>{{blog.content}}</p>
+  </div>
+
+  {{/each}}
+  </div>

@@ -6,18 +6,28 @@ const router = require('express').Router();
 const blogs = [
   { blog_title: 'Blog Title One',
     blog_content: 'Here is blog one content.',
+    blog_date_created: '1/1/2020',
   },
   { blog_title: 'Blog Title TWO',
   blog_content: 'Here is blog two content.',
+  blog_date_created: '1/1/2020',
 },
 ];
 
 router.get('/', async (req, res) => {
-  res.render('../views/layouts/main');
+  res.render('../views/layouts/main', { blogs });
+});
+
+router.get('/dashboard', async (req, res) => {
+  res.render('../views/dashboard');
 });
 
 router.get('/blog/:num', async (req, res) => {
   return res.render('blog', blogs[req.params.num - 1]);
+});
+
+router.get('/login', async (req, res) => {
+  return res.render('../views/login');
 });
 
 // router.get('/', async (req, res) => {
