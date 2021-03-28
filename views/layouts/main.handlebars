@@ -16,11 +16,15 @@
     <nav>
       <div class="nav-wrapper">
         <ul id="nav-mobile">
-          <a class="waves-effect waves-light btn" id="homeBtn">Home</a>
-          <a class="waves-effect waves-light btn" id="dashBtn">Dashboard</a>
-          <a class="waves-effect waves-light btn" id="createBtn">Create</a>
-          <a class="waves-effect waves-light btn" id="loginBtn">Login</a>
-          <a class="waves-effect waves-light btn" id="logoutBtn">Logout</a>
+
+          {{!-- {{#if logged_in}} --}}
+          <a href="../main" class="waves-effect waves-light btn" id="homeBtn">Home</a>
+          <a href="../dashboard" class="waves-effect waves-light btn" id="dashBtn">Dashboard</a>
+          <a href="../blog" class="waves-effect waves-light btn" id="createBtn">Create</a>
+          <a  href="../logout" class="waves-effect waves-light btn" id="logoutBtn">Logout</a>
+          {{!-- {{else}} --}}
+          <a href="../login"  class="waves-effect waves-light btn" id="loginBtn">Login</a>
+          {{!-- {{/if}} --}}
         </ul>
       </div>
     </nav>

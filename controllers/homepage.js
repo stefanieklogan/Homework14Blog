@@ -1,24 +1,24 @@
 const router = require('express').Router();
 const path = require('path');
-// const { Blog, User } = require('../models');
-// const withAuth = require('../utils/auth');
-
-const blogs = [
-  { title: 'Blog One',
-    date_created: '1/1/2020',
-    content: 'Here is blog one content.',
-  },
-  { title: 'Blog TWO',
-  date_created: '2/1/2020',
-  content: 'Here is blog two content.',
-},
-];
+const { Blog, User } = require('../models');
+const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
-  res.render('index', {} );
+  res.render('homepage');
 });
 
-router.get('/dashboard', async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
+  const blogData = await Blog.findAll({
+    include: [
+      {
+        model: User,
+        attributes: ['name'],
+      },
+    ],
+  }).catch((err) => {
+    res.json(err);
+  });
+  const blogs = blogData.map((blog) => blog.get({ plain: true}));
   return res.render('dashboard', {blogs} );
 });
 
@@ -30,76 +30,32 @@ router.get('/login', async (req, res) => {
   return res.render('login');
 });
 
-// router.get('/', async (req, res) => {
-//   try {
-//     // Get all blogs and JOIN with user data
-//     const blogData = await Blog.findAll({
-//       include: [
-//         {
-//           model: User,
-//           attributes: ['name'],
-//         },
-//       ],
-//     });
+router.get('/signup', async (req, res) => {
+  res.render('signup', {
+    title: "Sign Up"
+  })
+});
 
-//     const blogs = blogData.map((blog) => blog.get({ plain: true }));
+router.get('/login', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/dashboard');
+    return;
+  }
 
-//     res.render('homepage', { 
-//       blogs, 
-//       logged_in: req.session.logged_in 
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+  res.render('login', {
+    title: 'login'
+  });
+});
 
-// router.get('/blog/:id', async (req, res) => {
-//   try {
-//     const blogData = await Blog.findByPk(req.params.id, {
-//       include: [
-//         {
-//           model: User,
-//           attributes: ['name'],
-//         },
-//       ],
-//     });
-
-//     const blog = blogData.get({ plain: true });
-
-//     res.render('blog', {
-//       ...blog,
-//       logged_in: req.session.logged_in
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-// router.get('/profile', withAuth, async (req, res) => {
-//   try {
-//     const userData = await User.findByPk(req.session.user_id, {
-//       attributes: { exclude: ['password'] },
-//       include: [{ model: Blog }],
-//     });
-
-//     const user = userData.get({ plain: true });
-
-//     res.render('profile', {
-//       ...user,
-//       logged_in: true
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-// router.get('/login', (req, res) => {
-//   if (req.session.logged_in) {
-//     res.redirect('/profile');
-//     return;
-//   }
-
-//   res.render('login');
-// });
+router.get('/logout', (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.status(204).redirect('/');
+    });
+  } else {
+    res.status(404).end();
+  }
+  res.render('logout');
+});
 
 module.exports = router;
