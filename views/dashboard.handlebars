@@ -8,11 +8,11 @@
       </div>
 
       <div class="col-4">
-      <p>Posted: {{blog.date_created}}</p>
+      <p>Written by {{user.name}} on {{format_date blog.date_created}}</p>
       </div>
     </div>
   <div class="row">
-    <p>{{blog.content}}</p>
+    <p><i>{{blog.content}}</i></p>
   <a class="waves-effect waves-light btn" id="homeBtn">Comment</a>
 </div>
 <br>
