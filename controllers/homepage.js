@@ -3,7 +3,7 @@ const { Blog, User } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
-  res.render('homepage');
+  res.render('login');
 });
 
 router.get('/dashboard', withAuth, async (req, res) => {
@@ -18,11 +18,13 @@ router.get('/dashboard', withAuth, async (req, res) => {
     res.json(err);
   });
   const blogs = blogData.map((blog) => blog.get({ plain: true}));
-  return res.render('dashboard', {blogs} );
+  return res.render('dashboard', { blogs } );
 });
 
 router.get('/signup', async (req, res) => {
-  res.render('signup');
+  res.render('signup', {
+    title: "Sign Up"
+  })
 });
 
 router.get('/login', (req, res) => {
