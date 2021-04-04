@@ -2,13 +2,9 @@ const router = require('express').Router();
 const { Post, Comment, User } = require('../models');
 const withAuth = require('../utils/auth');
 
-const fetch = require("node-fetch");
-require("dotenv").config();
-const fs = require('fs');
-
 router.get('/', async (req, res) => {
   try {
-      const postData = await Posts.findAll({
+      const postData = await Post.findAll({
           include: [
               {   model: User,
                   attributes: ['name']
