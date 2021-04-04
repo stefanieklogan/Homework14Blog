@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+
   <link rel="stylesheet" href="../../public/css/style.css">
   <title>Tech Blog</title>
 </head>
@@ -17,20 +19,27 @@
       <div class="nav-wrapper">
         <ul id="nav-mobile">
 
-          {{!-- {{#if logged_in}} --}}
-          <a href="../main" class="waves-effect waves-light btn" id="homeBtn">Home</a>
-          <a href="../dashboard" class="waves-effect waves-light btn" id="dashBtn">Dashboard</a>
-          <a href="../allBlogs" class="waves-effect waves-light btn" id="allBlogBtn">All Blogs</a>
-          <a href="../createBlog" class="waves-effect waves-light btn" id="createBtn">Create</a>
-          <a  href="../logout" class="waves-effect waves-light btn" id="logoutBtn">Logout</a>
-          {{!-- {{else}} --}}
-          <a href="../login"  class="waves-effect waves-light btn" id="loginBtn">Login</a>
-          {{!-- {{/if}} --}}
+          {{#if logged_in}}
+          <nav id="nav-mobile nav-style">
+            <a href="../dashboard" class="waves-effect waves-light btn" id="dashBtn">Home</a>
+            <a href="../post" class="waves-effect waves-light btn" id="postBtn">Create</a>
+            <a href="../logout" class="waves-effect waves-light btn" id="logoutBtn">Logout</a>
+          </nav>
+          {{else}}
+          <nav id="nav-mobile nav-style">
+            <a href="../login" class="waves-effect waves-light btn" id="loginBtn">Login</a>
+            <a href="../signup" class="waves-effect waves-light btn" id="signupBtn">SignUp</a>
+          </nav>
+          {{/if}}
         </ul>
       </div>
     </nav>
   </header>
-{{{ body }}}
+  {{{ body }}}
+
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
