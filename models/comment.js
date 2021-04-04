@@ -12,10 +12,10 @@ Comment.init(
       autoIncrement: true,
     },
     comment: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
       validate: {
-        length: [2-100]
+        len: [2,200]
     }
     },
     date_created: {
@@ -30,10 +30,10 @@ Comment.init(
         key: 'id',
       },
     },
-    blog_id: {
+    post_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'blog',
+        model: 'post',
         key: 'id',
       },
     },
