@@ -28,6 +28,28 @@ router.get('/post', async (req, res) => {
   res.render('post', { posts, logged_in: req.session.logged_in});
 });
 
+router.get('post/:id', async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: User 
+        },
+        {
+          model: Comment
+        }
+      ]
+    });
+    if (!postData) res.status(400).json({ message: "Post not found with this ID."});
+
+    const post = postData.get({ plain: true });
+
+    res.render('editPost', { post, name: req.session.user_name, logged_in: req.session.logged_in});
+  } catch (err) {
+    res.status(500).json(err);
+  }
+})
+
 router.get('/dashboard', withAuth, async (req, res) => {
   const commentData = await Post.findAll({
     include: [

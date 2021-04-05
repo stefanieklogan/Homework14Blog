@@ -60,7 +60,7 @@ const displayCommentInput = async (event) => {
       console.log(id);
           
       if (id) {
-        const response = await fetch(`/api/posts/${id}`, {
+        const response = await fetch(`/post/${id}`, {
           method: 'PUT',
       });
 
@@ -88,7 +88,7 @@ const displayCommentInput = async (event) => {
         console.log(id);
             
         if (id) {
-          const response = await fetch(`/api/posts/${id}`, {
+          const response = await fetch(`/post/${id}`, {
             method: 'DELETE',
         });
 
