@@ -24,6 +24,8 @@ router.post('/', async(req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
+  console.log("user:" + req.session.user_id);
+  console.log(req.params.id);
   try {
 
     const updatedPost = {

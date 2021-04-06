@@ -60,7 +60,7 @@ const displayCommentInput = async (event) => {
       console.log(id);
           
       if (id) {
-        const response = await fetch(`/post/${id}`, {
+        const response = await fetch(`/api/posts/${id}`, {
           method: 'PUT',
       });
 
