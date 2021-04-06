@@ -50,7 +50,10 @@ router.put('/:id', async (req, res) => {
 }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
+  console.log("user:" + req.session.user_id);
+  console.log(req.params.id);
+
   try {
     const postData = await Post.destroy({
       where: {

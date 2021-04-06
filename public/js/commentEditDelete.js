@@ -74,8 +74,8 @@ const displayCommentInput = async (event) => {
     };
     
     document
-    .querySelector('.editBtn')
-    .addEventListener('click', editComment);
+    .querySelectorAll('.editBtn')
+    .forEach(element => element.addEventListener('click', editComment));
 
     /////////////////////////////////////////////////////////
 
@@ -88,7 +88,7 @@ const displayCommentInput = async (event) => {
         console.log(id);
             
         if (id) {
-          const response = await fetch(`/post/${id}`, {
+          const response = await fetch(`/api/posts/${id}`, {
             method: 'DELETE',
         });
 
@@ -102,6 +102,6 @@ const displayCommentInput = async (event) => {
     };
       
       document
-      .querySelector('.deleteBtn')
-      .addEventListener('click', deleteComment);
+      .querySelectorAll('.deleteBtn')
+      .forEach(element => element.addEventListener('click', deleteComment));
 
