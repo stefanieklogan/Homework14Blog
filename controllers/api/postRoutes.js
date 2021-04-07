@@ -26,29 +26,32 @@ router.post('/', async(req, res) => {
 router.put('/:id', async (req, res) => {
   console.log("user:" + req.session.user_id);
   console.log(req.params.id);
-  try {
 
+  try {
     const updatedPost = {
-      title: req.body.title,
       content: req.body.post,
       user_id: req.session.user_id
     }
 
+    console.log("body: " + req.body);
+
     const revivedPost = await Post.update( updatedPost, {
       where: {
         id: req.params.id,
-        user_id: req.session.user_id,
+        user_id: req.session.user_id
       },
     });
   
-  if (!postData) {
-    res.status(404),json({ message: 'No post found with this id!'});
+  if (!revivedPost) {
+    res.status(404).json({ message: 'No post found with this id!'});
     return;
   }
 
-  res.status(200),json(revivedPost);
+  res.status(200).json(revivedPost);
 } catch (err) {
+  console.log(err);
   res.status(500).json(err);
+  console.log("post should now read: " + revivedPost)
 }
 });
 
