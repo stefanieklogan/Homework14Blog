@@ -58,7 +58,7 @@ document
 
     /////////////////////////////////////////////////////////
 
-    const displayEditInput = async (event) => {
+    const displayEditPostInput = async (event) => {
       event.preventDefault();
 
       const id = event.target.getAttribute('data-id');
@@ -81,11 +81,11 @@ document
     
     document
     .querySelectorAll('.editBtn')
-    .forEach(element => element.addEventListener('click', displayEditInput));
+    .forEach(element => element.addEventListener('click', displayEditPostInput));
     
     /////////////////////////////////////////////////////////
 
-    const editComment = async (event) => {
+    const editPost = async (event) => {
       event.preventDefault();
     
       const id = event.target.getAttribute('data-id');
@@ -112,11 +112,11 @@ document
     
     document
     .querySelectorAll('.saveEditBtn')
-    .forEach(element => element.addEventListener('click', editComment));
+    .forEach(element => element.addEventListener('click', editPost));
 
     /////////////////////////////////////////////////////////
 
-    const deleteComment = async (event) => {
+    const deletePost = async (event) => {
         event.preventDefault();
         console.log('deleteBtn pressed');
       
@@ -140,6 +140,6 @@ document
       
       document
       .querySelectorAll('.deleteBtn')
-      .forEach(element => element.addEventListener('click', deleteComment));
+      .forEach(element => element.addEventListener('click', deletePost));
 
       ///////////////////////////////////////////////////////
