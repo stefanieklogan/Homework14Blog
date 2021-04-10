@@ -1,3 +1,7 @@
+var commentBtn = document.querySelector('.commentBtn');
+var commentContainer = document.querySelector('.commentContainer');
+var deleteBtn = document.querySelector('.deleteBtn');
+
 const displayCommentInput = async (event) => {
   event.preventDefault();
 
@@ -6,18 +10,18 @@ const displayCommentInput = async (event) => {
   console.log("post_id " + id);
 
   if (id) {
-  var idToComment = document.querySelector("#idToComment" + id);
-  var commentBtn = document.querySelector('.commentBtn');
-  var commentContainer = document.querySelector('.commentContainer');
+    var idToComment = document.querySelector("#idToComment" + id);
 
-  commentContainer.classList.remove('hide');
-  commentBtn.classList.add('hide');
-  console.log('commentBtn pressed');
-}};
+
+    commentContainer.classList.remove('hide');
+    commentBtn.classList.add('hide');
+    console.log('commentBtn pressed');
+  }
+};
 
 document
-.querySelectorAll('.commentBtn')
-.forEach(element => element.addEventListener('click', displayCommentInput));
+  .querySelectorAll('.commentBtn')
+  .forEach(element => element.addEventListener('click', displayCommentInput));
 
 /////////////////////////////////////////////////////////
 
@@ -28,11 +32,11 @@ const saveNewComment = async (event) => {
   const comment = document.querySelector('#commentText').value.trim();
   const id = event.target.getAttribute('data-id');
 
-console.log(comment);
-console.log(id);
+  console.log(comment);
+  console.log(id);
 
 
-  if (comment && id ) {
+  if (comment && id) {
     const response = await fetch('/api/comments', {
       method: 'POST',
       body: JSON.stringify({ comment, post_id: id }),
@@ -43,7 +47,7 @@ console.log(id);
 
     if (response.ok) {
       location.reload();
-                console.log('comment saved');
+      console.log('comment saved');
 
 
     } else {
@@ -53,93 +57,93 @@ console.log(id);
 };
 
 document
-.querySelector('.saveCommentBtn')
-.addEventListener('click', saveNewComment);
+  .querySelector('.saveCommentBtn')
+  .addEventListener('click', saveNewComment);
 
-    /////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
 
-    const displayEditPostInput = async (event) => {
-      event.preventDefault();
+// const displayEditPostInput = async (event) => {
+//   event.preventDefault();
 
-      const id = event.target.getAttribute('data-id');
+//   const id = event.target.getAttribute('data-id');
 
-      console.log("post_id " + id);
-      
-      if (id) {
-      var id_to_edit = document.querySelector("#editPostDiv" + id);
-      var editBtn = document.querySelector('.editBtn');
-      // var editContainer = document.querySelector('.editContainer');
-    
-      id_to_edit.classList.remove('hide');
-      editBtn.classList.add('hide');
-      commentBtn.classList.add('hide');
-      deleteBtn.classList.add('hide');
+//   console.log("post_id " + id);
 
-      console.log('editBtn pressed');
-      }
-    };
-    
-    document
-    .querySelectorAll('.editBtn')
-    .forEach(element => element.addEventListener('click', displayEditPostInput));
-    
-    /////////////////////////////////////////////////////////
+//   if (id) {
+//   var id_to_edit = document.querySelector("#editPostDiv" + id);
+//   var editBtn = document.querySelector('.editBtn');
+//   // var editContainer = document.querySelector('.editContainer');
 
-    const editPost = async (event) => {
-      event.preventDefault();
-    
-      const id = event.target.getAttribute('data-id');
-      const content = document.getElementById('editPost'+ id).value;
-      const data = {content:content};
+//   id_to_edit.classList.remove('hide');
+//   editBtn.classList.add('hide');
+//   commentBtn.classList.add('hide');
+//   deleteBtn.classList.add('hide');
 
-      console.log(id);
-      console.log(content);
-          
-      if (id) {
-        const response = await fetch(`/api/posts/${id}`, {
-          method: 'PUT',
-          body: JSON.stringify(data)
-      });
+//   console.log('editBtn pressed');
+//   }
+// };
 
-      if (response.ok) {
-          document.location.replace('/dashboard');
-          alert('Post updated')
-      } else {
-          alert('Failed to update post')
-      }
-          }
-    };
-    
-    document
-    .querySelectorAll('.saveEditBtn')
-    .forEach(element => element.addEventListener('click', editPost));
+// document
+// .querySelectorAll('.editBtn')
+// .forEach(element => element.addEventListener('click', displayEditPostInput));
 
-    /////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
 
-    const deletePost = async (event) => {
-        event.preventDefault();
-        console.log('deleteBtn pressed');
-      
-        const id = event.target.getAttribute('data-id');
-     
-        console.log(id);
-            
-        if (id) {
-          const response = await fetch(`/api/posts/${id}`, {
-            method: 'DELETE',
-        });
+// const editPost = async (event) => {
+//   event.preventDefault();
 
-        if (response.ok) {
-            document.location.replace('/dashboard');
-            alert('Post deleted')
-        } else {
-            alert('Failed to delete post')
-        }
-            }
-    };
-      
-      document
-      .querySelectorAll('.deleteBtn')
-      .forEach(element => element.addEventListener('click', deletePost));
+//   const id = event.target.getAttribute('data-id');
+//   const content = document.getElementById('editPost'+ id).value;
+//   const data = {content:content};
+
+//   console.log(id);
+//   console.log(content);
+
+//   if (id) {
+//     const response = await fetch(`/api/posts/${id}`, {
+//       method: 'PUT',
+//       body: JSON.stringify(data)
+//   });
+
+//   if (response.ok) {
+//       document.location.replace('/dashboard');
+//       alert('Post updated')
+//   } else {
+//       alert('Failed to update post')
+//   }
+//       }
+// };
+
+// document
+// .querySelectorAll('.saveEditBtn')
+// .forEach(element => element.addEventListener('click', editPost));
+
+/////////////////////////////////////////////////////////
+
+const deletePost = async (event) => {
+  event.preventDefault();
+  console.log('deleteBtn pressed');
+
+  const id = event.target.getAttribute('data-id');
+
+  console.log(id);
+
+  if (id) {
+    const response = await fetch(`/api/posts/${id}`, {
+      method: 'DELETE',
+    });
+
+    if (response.ok) {
+      document.location.replace('/dashboard');
+      alert('Post deleted')
+    } else {
+      alert('Failed to delete; non-author cannot delete.')
+    }
+  }
+};
+
+document
+  .querySelectorAll('.deleteBtn')
+  .forEach(element => element.addEventListener('click', deletePost));
 
       ///////////////////////////////////////////////////////
